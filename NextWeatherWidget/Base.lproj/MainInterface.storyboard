@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,31 +13,72 @@
         <!--Today View Controller-->
         <scene sceneID="cwh-vc-ff4">
             <objects>
-                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="NextWeatherWidget" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="GcN-lo-r42">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71z-Lf-7zu" userLabel="CenterBar">
+                                <rect key="frame" x="159.5" y="5" width="1" height="90"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="6ia-01-mRY"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UgG-lw-NJw" userLabel="TodayIcon">
+                                <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UgG-lw-NJw" secondAttribute="height" multiplier="1:1" id="yRQ-wY-Arf"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eED-Jd-5lU" userLabel="TomorrowIcon">
+                                <rect key="frame" x="170.5" y="10" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eED-Jd-5lU" secondAttribute="height" multiplier="1:1" id="TKF-YE-Cyn"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dn3-Fd-CDH">
+                                <rect key="frame" x="100" y="49.5" width="49.5" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="aBc-MV-ax8"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moV-Fh-FPK">
+                                <rect key="frame" x="260.5" y="49.5" width="49.5" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="uFZ-xC-Ul1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="GcN-lo-r42" secondAttribute="bottom" constant="20" symbolic="YES" id="0Q0-KW-PJ6"/>
-                            <constraint firstItem="GcN-lo-r42" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="20" symbolic="YES" id="6Vq-gs-PHe"/>
-                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="GcN-lo-r42" secondAttribute="trailing" constant="20" symbolic="YES" id="L8K-9R-egU"/>
-                            <constraint firstItem="GcN-lo-r42" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" constant="20" symbolic="YES" id="mYS-Cv-VNx"/>
+                            <constraint firstItem="71z-Lf-7zu" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="0ly-Hh-7dC"/>
+                            <constraint firstItem="dn3-Fd-CDH" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="4Ug-aL-FXz"/>
+                            <constraint firstItem="UgG-lw-NJw" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="10" id="7Hj-Pa-YFb"/>
+                            <constraint firstItem="71z-Lf-7zu" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="9EK-ta-rOY"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="71z-Lf-7zu" secondAttribute="bottom" constant="5" id="AmC-QG-KxA"/>
+                            <constraint firstItem="eED-Jd-5lU" firstAttribute="leading" secondItem="71z-Lf-7zu" secondAttribute="trailing" constant="10" id="Gyq-id-Ypb"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="UgG-lw-NJw" secondAttribute="bottom" constant="10" id="Lcb-US-cY9"/>
+                            <constraint firstItem="moV-Fh-FPK" firstAttribute="leading" secondItem="eED-Jd-5lU" secondAttribute="trailing" constant="10" id="O4p-ud-HKU"/>
+                            <constraint firstItem="dn3-Fd-CDH" firstAttribute="leading" secondItem="UgG-lw-NJw" secondAttribute="trailing" constant="10" id="TtB-y2-XM0"/>
+                            <constraint firstItem="71z-Lf-7zu" firstAttribute="leading" secondItem="dn3-Fd-CDH" secondAttribute="trailing" constant="10" id="XPZ-Ns-vfn"/>
+                            <constraint firstItem="moV-Fh-FPK" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="YBT-9W-ulc"/>
+                            <constraint firstItem="71z-Lf-7zu" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="topMargin" constant="5" id="g8Z-ja-Hio"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="moV-Fh-FPK" secondAttribute="trailing" constant="10" id="j8K-71-utL"/>
+                            <constraint firstItem="UgG-lw-NJw" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" constant="10" id="qlE-Np-TwV"/>
+                            <constraint firstItem="eED-Jd-5lU" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" constant="10" id="ufF-s0-YKN"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="eED-Jd-5lU" secondAttribute="bottom" constant="10" id="xeg-ML-JI1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="37"/>
+                    <size key="freeformSize" width="320" height="100"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="54.399999999999999" y="27.886056971514247"/>
         </scene>
     </scenes>
 </document>

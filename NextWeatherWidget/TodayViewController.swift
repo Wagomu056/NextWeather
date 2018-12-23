@@ -197,12 +197,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             let jsonString = self.extractionJsonData(string: dataString)
             guard let extractedData = jsonString.data(using: .utf8) else { return }
             
+            #if TMP
             do {
                 let weather = try JSONDecoder().decode(Weather.self, from: extractedData)
                 print(weather.pref.area.tokyo.info[0].weather)
             } catch {
                 print(error)
             }
+            #endif
         }.resume()
         
         completionHandler(NCUpdateResult.newData)

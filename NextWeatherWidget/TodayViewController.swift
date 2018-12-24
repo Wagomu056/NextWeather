@@ -94,6 +94,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     // view items
     @IBOutlet weak var todayIcon: UIImageView!
+    @IBOutlet weak var todayTempHigh: UILabel!
+    @IBOutlet weak var todayTempLow: UILabel!
+    
+    @IBOutlet weak var tomorrowIcon: UIImageView!
+    @IBOutlet weak var tomorrowTempHigh: UILabel!
+    @IBOutlet weak var tomorrowTempLow: UILabel!
+    
     
     struct Weather : Codable {
         //let link: String
@@ -221,11 +228,26 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         let todayInfo = weather.pref.area.tokyo.info[0]
         let todayImagePath = self.addHttps(path: todayInfo.img)
-        print(todayImagePath)
-        let image = sessionIconImage(path: todayImagePath)
+        let todayImage = sessionIconImage(path: todayImagePath)
+        let todayTempHigh = getTemperature(info: todayInfo, type: "max")
+        let todayTempLow = getTemperature(info: todayInfo, type: "min")
         
         DispatchQueue.main.async {
-            self.todayIcon.image = image
+            self.todayIcon.image = todayImage
+            self.todayTempHigh.text = todayTempHigh + "℃"
+            self.todayTempLow.text = todayTempLow + "℃"
+        }
+        
+        let tomorrowInfo = weather.pref.area.tokyo.info[1]
+        let tomorrowImagePath = self.addHttps(path: tomorrowInfo.img)
+        let tomorrowImage = sessionIconImage(path: tomorrowImagePath)
+        let tomorrowTempHigh = getTemperature(info: tomorrowInfo, type: "max")
+        let tomorrowTempLow = getTemperature(info: tomorrowInfo, type: "min")
+        
+        DispatchQueue.main.async {
+            self.tomorrowIcon.image = tomorrowImage
+            self.tomorrowTempHigh.text = tomorrowTempHigh + "℃"
+            self.tomorrowTempLow.text = tomorrowTempLow + "℃"
         }
     }
     
@@ -246,6 +268,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         guard let data = try? Data(contentsOf: url) else { return nil }
         
         return UIImage(data: data)
+    }
+    
+    func getTemperature(info: Info, type: String) -> String {
+        let ranges = info.temperature.range
+        for range in ranges {
+            if range.centigrade == type {
+                return range.content
+            }
+        }
+        return "0"
     }
     
     func extractionJsonData(string: String) -> String {

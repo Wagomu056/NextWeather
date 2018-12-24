@@ -51,7 +51,7 @@
                                 <color key="textColor" red="1" green="0.29263890657343361" blue="0.09718065097215367" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18℃" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nem-Gs-sr1" userLabel="TodayL9w">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18℃" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nem-Gs-sr1" userLabel="TodayLow">
                                 <rect key="frame" x="103" y="58" width="44" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.41851534500863374" green="0.55912582204720973" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,13 +63,13 @@
                                 <color key="textColor" red="1" green="0.29263890657343361" blue="0.09718065097215367" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eoy-eg-OvB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eoy-eg-OvB" userLabel="TodayLabel">
                                 <rect key="frame" x="35" y="4.5" width="20.5" height="12.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="明日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYV-4w-lny">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="明日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYV-4w-lny" userLabel="TomorrowLabel">
                                 <rect key="frame" x="195" y="4.5" width="20.5" height="12.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -129,6 +129,11 @@
                     <size key="freeformSize" width="320" height="100"/>
                     <connections>
                         <outlet property="todayIcon" destination="UgG-lw-NJw" id="Ov1-Wk-fnU"/>
+                        <outlet property="todayTempHigh" destination="f4g-s7-1pX" id="Sf2-cG-n8h"/>
+                        <outlet property="todayTempLow" destination="Nem-Gs-sr1" id="UJ1-3W-akV"/>
+                        <outlet property="tomorrowIcon" destination="eED-Jd-5lU" id="pZa-MJ-CIX"/>
+                        <outlet property="tomorrowTempHigh" destination="ZbY-y6-HmH" id="Ihe-d8-fBm"/>
+                        <outlet property="tomorrowTempLow" destination="yYp-hi-Nhv" id="XzP-FY-Z09"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -92,6 +92,9 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
+    // view items
+    @IBOutlet weak var todayIcon: UIImageView!
+    
     struct Weather : Codable {
         //let link: String
         let pref: Pref
@@ -130,7 +133,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let rainFallChance: RainFallChance
         let weather: String
         let date: String
-        //let img: String
+        let img: String
         //let wave: String?
         let temperature: Temperature
         //let weatherDetail: String?
@@ -139,7 +142,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             case rainFallChance = "rainfallchance"
             case weather
             case date
-            //case img
+            case img
             //case wave
             case temperature
             //case weatherDetail = "weather_detail"
@@ -197,17 +200,51 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             let jsonString = self.extractionJsonData(string: dataString)
             guard let extractedData = jsonString.data(using: .utf8) else { return }
             
-            #if TMP
             do {
                 let weather = try JSONDecoder().decode(Weather.self, from: extractedData)
-                print(weather.pref.area.tokyo.info[0].weather)
+                self.updateView(weather: weather)
             } catch {
                 print(error)
             }
-            #endif
+            
         }.resume()
+
+        // httpsにしないと通信できない
+        //let image = sessionIconImage(path: "https://www.drk7.jp/MT/images/MTWeather/201.gif")
+        //print(image)
         
         completionHandler(NCUpdateResult.newData)
+    }
+    
+    func updateView(weather: Weather) {
+        print(weather.pref.area.tokyo.info[0].weather)
+        let todayInfo = weather.pref.area.tokyo.info[0]
+        let todayImagePath = self.addHttps(path: todayInfo.img)
+        print(todayImagePath)
+        let image = sessionIconImage(path: todayImagePath)
+        
+        DispatchQueue.main.async {
+            self.todayIcon.image = image
+        }
+    }
+    
+    func addHttps(path: String) -> String {
+        var strings = path.split(separator: ":")
+        strings[0] = strings[0] + "s:"
+        
+        var addedHttpsString = ""
+        for str in strings {
+            addedHttpsString += str
+        }
+        
+        return addedHttpsString
+    }
+    
+    func sessionIconImage(path: String) -> UIImage? {
+        guard let url = URL(string: path) else { return nil }
+        guard let data = try? Data(contentsOf: url) else { return nil }
+        
+        return UIImage(data: data)
     }
     
     func extractionJsonData(string: String) -> String {

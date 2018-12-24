@@ -100,7 +100,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let pref: Pref
         //let author: String
         //let title: String
-        //let pubDate: String
+        let pubDate: String
         //let description: String
         //let managingEditor: String
     }
@@ -217,7 +217,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func updateView(weather: Weather) {
-        print(weather.pref.area.tokyo.info[0].weather)
+        print(weather.pubDate)
+        
         let todayInfo = weather.pref.area.tokyo.info[0]
         let todayImagePath = self.addHttps(path: todayInfo.img)
         print(todayImagePath)

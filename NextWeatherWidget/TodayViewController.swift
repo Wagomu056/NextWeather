@@ -197,7 +197,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let urlPath = "https://www.drk7.jp/weather/json/13.js"
         guard let url = URL(string: urlPath) else { return }
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let config: URLSessionConfiguration = URLSessionConfiguration.ephemeral
+        let session: URLSession = URLSession(configuration: config)
+        session.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 print(error!.localizedDescription)
             }
@@ -277,7 +279,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 return range.content
             }
         }
-        return "0"
+        return "Err"
     }
     
     func extractionJsonData(string: String) -> String {

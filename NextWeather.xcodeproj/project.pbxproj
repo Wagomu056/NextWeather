@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A09611486BED980F2A3B834 /* Pods_NextWeatherWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC309909BA01F323A9938D4 /* Pods_NextWeatherWidget.framework */; };
 		B0B4410B21CDD37900DBC1D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4410A21CDD37900DBC1D6 /* AppDelegate.swift */; };
 		B0B4410D21CDD37900DBC1D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4410C21CDD37900DBC1D6 /* ViewController.swift */; };
 		B0B4411021CDD37900DBC1D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B4410E21CDD37900DBC1D6 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 		B0B4412621CDD3A600DBC1D6 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4412521CDD3A600DBC1D6 /* TodayViewController.swift */; };
 		B0B4412921CDD3A600DBC1D6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B4412721CDD3A600DBC1D6 /* MainInterface.storyboard */; };
 		B0B4412D21CDD3A600DBC1D6 /* NextWeatherWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B0B4412021CDD3A600DBC1D6 /* NextWeatherWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C5FCF344350AE5C852DBA192 /* Pods_NextWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CAE3FA6CC436F9B2E837C5F /* Pods_NextWeather.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		45773F8CB5AF72E4E39848AD /* Pods-NextWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextWeather/Pods-NextWeather.release.xcconfig"; sourceTree = "<group>"; };
+		5C52EB7B7EC00CBF064CD1B6 /* Pods-NextWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextWeather/Pods-NextWeather.debug.xcconfig"; sourceTree = "<group>"; };
+		5CAE3FA6CC436F9B2E837C5F /* Pods_NextWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NextWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EC309909BA01F323A9938D4 /* Pods_NextWeatherWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NextWeatherWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B4410721CDD37900DBC1D6 /* NextWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B4410A21CDD37900DBC1D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0B4410C21CDD37900DBC1D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +61,8 @@
 		B0B4412521CDD3A600DBC1D6 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		B0B4412821CDD3A600DBC1D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B0B4412A21CDD3A600DBC1D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF1C5419E01740603DBD6AE0 /* Pods-NextWeatherWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextWeatherWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextWeatherWidget/Pods-NextWeatherWidget.release.xcconfig"; sourceTree = "<group>"; };
+		D21965F8E90A212F7CF48EEB /* Pods-NextWeatherWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextWeatherWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextWeatherWidget/Pods-NextWeatherWidget.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5FCF344350AE5C852DBA192 /* Pods_NextWeather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B4412321CDD3A600DBC1D6 /* NotificationCenter.framework in Frameworks */,
+				0A09611486BED980F2A3B834 /* Pods_NextWeatherWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +93,7 @@
 				B0B4412421CDD3A600DBC1D6 /* NextWeatherWidget */,
 				B0B4412121CDD3A600DBC1D6 /* Frameworks */,
 				B0B4410821CDD37900DBC1D6 /* Products */,
+				E6DD57BFF9AB1E4E14B7CAAA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				B0B4412221CDD3A600DBC1D6 /* NotificationCenter.framework */,
+				5CAE3FA6CC436F9B2E837C5F /* Pods_NextWeather.framework */,
+				9EC309909BA01F323A9938D4 /* Pods_NextWeatherWidget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -126,6 +139,17 @@
 			path = NextWeatherWidget;
 			sourceTree = "<group>";
 		};
+		E6DD57BFF9AB1E4E14B7CAAA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5C52EB7B7EC00CBF064CD1B6 /* Pods-NextWeather.debug.xcconfig */,
+				45773F8CB5AF72E4E39848AD /* Pods-NextWeather.release.xcconfig */,
+				D21965F8E90A212F7CF48EEB /* Pods-NextWeatherWidget.debug.xcconfig */,
+				CF1C5419E01740603DBD6AE0 /* Pods-NextWeatherWidget.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,10 +157,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0B4411921CDD37A00DBC1D6 /* Build configuration list for PBXNativeTarget "NextWeather" */;
 			buildPhases = (
+				0F8B900F0956D57A67519F39 /* [CP] Check Pods Manifest.lock */,
 				B0B4410321CDD37900DBC1D6 /* Sources */,
 				B0B4410421CDD37900DBC1D6 /* Frameworks */,
 				B0B4410521CDD37900DBC1D6 /* Resources */,
 				B0B4413121CDD3A600DBC1D6 /* Embed App Extensions */,
+				E80E6F5C58BD8D2EF753448F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +178,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0B4412E21CDD3A600DBC1D6 /* Build configuration list for PBXNativeTarget "NextWeatherWidget" */;
 			buildPhases = (
+				66F2126A88DAEA453530A934 /* [CP] Check Pods Manifest.lock */,
 				B0B4411C21CDD3A600DBC1D6 /* Sources */,
 				B0B4411D21CDD3A600DBC1D6 /* Frameworks */,
 				B0B4411E21CDD3A600DBC1D6 /* Resources */,
@@ -222,6 +249,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F8B900F0956D57A67519F39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NextWeather-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66F2126A88DAEA453530A934 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NextWeatherWidget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E80E6F5C58BD8D2EF753448F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NextWeather/Pods-NextWeather-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NextWeather/Pods-NextWeather-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B0B4410321CDD37900DBC1D6 /* Sources */ = {
@@ -397,6 +493,7 @@
 		};
 		B0B4411A21CDD37A00DBC1D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C52EB7B7EC00CBF064CD1B6 /* Pods-NextWeather.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -416,6 +513,7 @@
 		};
 		B0B4411B21CDD37A00DBC1D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45773F8CB5AF72E4E39848AD /* Pods-NextWeather.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -435,6 +533,7 @@
 		};
 		B0B4412F21CDD3A600DBC1D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D21965F8E90A212F7CF48EEB /* Pods-NextWeatherWidget.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZY99BCW7N5;
@@ -454,6 +553,7 @@
 		};
 		B0B4413021CDD3A600DBC1D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF1C5419E01740603DBD6AE0 /* Pods-NextWeatherWidget.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZY99BCW7N5;

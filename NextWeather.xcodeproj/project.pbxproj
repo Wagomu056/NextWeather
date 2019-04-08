@@ -204,9 +204,11 @@
 				TargetAttributes = {
 					B0B4410621CDD37900DBC1D6 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					B0B4411F21CDD3A600DBC1D6 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -506,7 +508,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ihcugamuzAayukaT.NextWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -526,7 +528,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ihcugamuzAayukaT.NextWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -546,7 +548,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ihcugamuzAayukaT.NextWeather.NextWeatherWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -566,7 +568,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ihcugamuzAayukaT.NextWeather.NextWeatherWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

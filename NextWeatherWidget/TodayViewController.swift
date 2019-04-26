@@ -21,67 +21,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var tomorrowTempLow: UILabel!
     
     // struct for json
-    struct Weather : Codable {
-        let pref: Pref
-        let pubDate: String
-    }
-    
-    struct Pref : Codable {
-        let area: Area
-    }
-    
-    struct Area : Codable {
-        //let izuSouth: AreaOne
-        //let ogasawara: AreaOne
-        let tokyo: AreaOne
-        //let izuNorth: AreaOne
-        
-        enum CodingKeys: String, CodingKey {
-            //case izuSouth = "伊豆諸島南部"
-            //case ogasawara = "小笠原諸島"
-            case tokyo = "東京地方"
-            //case izuNorth = "伊豆諸島北部"
-        }
-    }
-    
-    struct AreaOne : Codable {
-        let info: [Info]
-    }
-    
     struct Info : Codable {
-        let rainFallChance: RainFallChance
-        let weather: String
-        let date: String
-        let img: String
-        let temperature: Temperature
-        
-        enum CodingKeys: String, CodingKey {
-            case rainFallChance = "rainfallchance"
-            case weather
-            case date
-            case img
-            case temperature
-        }
-    }
-    
-    struct RainFallChance : Codable {
-        let unit: String
-        let period: [RainFallChancePeriod]
-    }
-    
-    struct RainFallChancePeriod : Codable {
-        let hour: String
-        let content: String
-    }
-    
-    struct Temperature : Codable {
-        let unit: String
-        let range: [TemperatureRange]
-    }
-    
-    struct TemperatureRange : Codable {
-        let centigrade: String
-        let content: String
+        let city : String
+        let maxTemp : [Int]
+        let minTemp : [Int]
+        let image : [String]
     }
     
     // main functions
@@ -97,10 +41,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         
-        let urlPath = "https://www.drk7.jp/weather/json/13.js"
-        guard let url = URL(string: urlPath) else { return }
+        let urlPath = "http://192.168.1.14:8080/weather/data/tokyo.json"
         
-        let config: URLSessionConfiguration = URLSessionConfiguration.ephemeral
+        guard let url = URL(string: urlPath) else { return }
+        print(url)
+        
+        let config: URLSessionConfiguration = URLSessionConfiguration.default
         let session: URLSession = URLSession(configuration: config)
         session.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -108,13 +54,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
             
             guard let data = data else { return }
-            guard let dataString = String(data: data, encoding: .utf8) else { return }
-            let jsonString = self.extractionJsonData(string: dataString)
+            guard let jsonString = String(data: data, encoding: .utf8) else { return }
             guard let extractedData = jsonString.data(using: .utf8) else { return }
             
             do {
-                let weather = try JSONDecoder().decode(Weather.self, from: extractedData)
-                self.updateView(weather: weather)
+                let info = try JSONDecoder().decode(Info.self, from: extractedData)
+                self.updateView(info: info)
             } catch {
                 print(error)
             }
@@ -123,14 +68,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         completionHandler(NCUpdateResult.newData)
     }
     
-    func updateView(weather: Weather) {
-        print(weather.pubDate)
+    func updateView(info: Info) {
+        print(info.city)
         
-        let todayInfo = weather.pref.area.tokyo.info[0]
-        let todayImagePath = self.addHttps(path: todayInfo.img)
-        let todayImage = sessionIconImage(path: todayImagePath)
-        let todayTempHigh = getTemperature(info: todayInfo, type: "max")
-        let todayTempLow = getTemperature(info: todayInfo, type: "min")
+        let todayImage = sessionIconImage(path: info.image[0])
+        let todayTempHigh = info.maxTemp[0].description
+        let todayTempLow = info.minTemp[0].description
         
         DispatchQueue.main.async {
             self.todayIcon.image = todayImage
@@ -138,11 +81,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.todayTempLow.text = todayTempLow + "℃"
         }
         
-        let tomorrowInfo = weather.pref.area.tokyo.info[1]
-        let tomorrowImagePath = self.addHttps(path: tomorrowInfo.img)
-        let tomorrowImage = sessionIconImage(path: tomorrowImagePath)
-        let tomorrowTempHigh = getTemperature(info: tomorrowInfo, type: "max")
-        let tomorrowTempLow = getTemperature(info: tomorrowInfo, type: "min")
+        let tomorrowImage = sessionIconImage(path: info.image[1])
+        let tomorrowTempHigh = info.maxTemp[1].description
+        let tomorrowTempLow = info.minTemp[1].description
         
         DispatchQueue.main.async {
             self.tomorrowIcon.image = tomorrowImage
@@ -151,39 +92,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
     }
     
-    func addHttps(path: String) -> String {
-        var strings = path.split(separator: ":")
-        strings[0] = strings[0] + "s:"
-        
-        var addedHttpsString = ""
-        for str in strings {
-            addedHttpsString += str
-        }
-        
-        return addedHttpsString
-    }
-    
     func sessionIconImage(path: String) -> UIImage? {
         guard let url = URL(string: path) else { return nil }
         guard let data = try? Data(contentsOf: url) else { return nil }
         
         return UIImage(data: data)
-    }
-    
-    func getTemperature(info: Info, type: String) -> String {
-        let ranges = info.temperature.range
-        for range in ranges {
-            if range.centigrade == type {
-                return range.content
-            }
-        }
-        return "Err"
-    }
-    
-    func extractionJsonData(string: String) -> String {
-        let splitByHeader = string.components(separatedBy: "(")
-        let splitByFooter = splitByHeader[1].components(separatedBy: ")")
-        return splitByFooter[0]
     }
 }
 

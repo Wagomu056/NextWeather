@@ -41,12 +41,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         
-        let urlPath = "http://192.168.1.14:8080/weather/data/tokyo.json"
+        let succeededLocal = Session(ip: "192.168.1.14", timeOut: 0.3)
+        if (succeededLocal) {
+            completionHandler(NCUpdateResult.newData)
+            return
+        }
         
-        guard let url = URL(string: urlPath) else { return }
-        print(url)
+        let succeededGlobal = Session(ip: "0.0.0.0", timeOut: 10)
+        if (succeededGlobal) {
+            completionHandler(NCUpdateResult.newData)
+            return
+        }
+        
+        completionHandler(NCUpdateResult.failed)
+    }
+    
+    func Session(ip: String, timeOut: Double) -> Bool {
+        let urlPath = "http://" + ip + ":8080/weather/data/tokyo.json"
+        guard let url = URL(string: urlPath) else { return false }
+        
+        var succeeded = false
         
         let config: URLSessionConfiguration = URLSessionConfiguration.default
+        config.timeoutIntervalForResource = timeOut
         let session: URLSession = URLSession(configuration: config)
         session.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -60,12 +77,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             do {
                 let info = try JSONDecoder().decode(Info.self, from: extractedData)
                 self.updateView(info: info)
+                succeeded = true
             } catch {
                 print(error)
             }
         }.resume()
         
-        completionHandler(NCUpdateResult.newData)
+        return succeeded
     }
     
     func updateView(info: Info) {

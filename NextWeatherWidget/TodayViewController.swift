@@ -41,22 +41,23 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         
-        let succeededLocal = Session(ip: "192.168.1.14", timeOut: 0.3)
+        let succeededLocal = sessionInfo(ip: "192.168.1.14", timeOut: 0.3)
         if (succeededLocal) {
             completionHandler(NCUpdateResult.newData)
             return
         }
         
-        let succeededGlobal = Session(ip: "0.0.0.0", timeOut: 10)
+        let succeededGlobal = sessionInfo(ip: "0.0.0.0", timeOut: 10)
         if (succeededGlobal) {
             completionHandler(NCUpdateResult.newData)
             return
         }
         
         completionHandler(NCUpdateResult.failed)
+        
     }
     
-    func Session(ip: String, timeOut: Double) -> Bool {
+    func sessionInfo(ip: String, timeOut: Double) -> Bool {
         let urlPath = "http://" + ip + ":8080/weather/data/tokyo.json"
         guard let url = URL(string: urlPath) else { return false }
         
@@ -90,8 +91,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         print(info.city)
         
         let todayImage = sessionIconImage(path: info.image[0])
-        let todayTempHigh = info.maxTemp[0].description
-        let todayTempLow = info.minTemp[0].description
+        let todayTempHigh = convertTemperatureToString(tempNum: info.maxTemp[0])
+        let todayTempLow = convertTemperatureToString(tempNum: info.minTemp[0])
         
         DispatchQueue.main.async {
             self.todayIcon.image = todayImage
@@ -100,8 +101,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
         
         let tomorrowImage = sessionIconImage(path: info.image[1])
-        let tomorrowTempHigh = info.maxTemp[1].description
-        let tomorrowTempLow = info.minTemp[1].description
+        let tomorrowTempHigh = convertTemperatureToString(tempNum: info.maxTemp[1])
+        let tomorrowTempLow = convertTemperatureToString(tempNum: info.minTemp[1])
         
         DispatchQueue.main.async {
             self.tomorrowIcon.image = tomorrowImage
@@ -116,85 +117,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         return UIImage(data: data)
     }
+    
+    let InvalidTemperature = 99
+    func convertTemperatureToString(tempNum: Int) -> String
+    {
+        if tempNum == InvalidTemperature {
+            return "--"
+        }
+        
+        return tempNum.description
+    }
 }
-
-/* 全データ取得の場合の構造体
- struct Weather : Codable {
- let link: String
- let pref: Pref
- let author: String
- let title: String
- let pubDate: String
- let description: String
- let managingEditor: String
- }
- 
- struct Pref : Codable {
- let area: Area
- let id: String
- }
- 
- struct Area : Codable {
- let izuSouth: AreaOne
- let ogasawara: AreaOne
- let tokyo: AreaOne
- let izuNorth: AreaOne
- 
- enum CodingKeys: String, CodingKey {
- case izuSouth = "伊豆諸島南部"
- case ogasawara = "小笠原諸島"
- case tokyo = "東京地方"
- case izuNorth = "伊豆諸島北部"
- }
- }
- 
- struct AreaOne : Codable {
- let info: [Info]
- let geo: Geo
- }
- 
- struct Info : Codable {
- let rainFallChance: RainFallChance
- let weather: String
- let date: String
- let img: String
- let wave: String?
- let temperature: Temperature
- let weatherDetail: String?
- 
- enum CodingKeys: String, CodingKey {
- case rainFallChance = "rainfallchance"
- case weather
- case date
- case img
- case wave
- case temperature
- case weatherDetail = "weather_detail"
- }
- }
- 
- struct RainFallChance : Codable {
- let unit: String
- let period: [RainFallChancePeriod]
- }
- 
- struct RainFallChancePeriod : Codable {
- let hour: String
- let content: String
- }
- 
- struct Temperature : Codable {
- let unit: String
- let range: [TemperatureRange]
- }
- 
- struct TemperatureRange : Codable {
- let centigrade: String
- let content: String
- }
- 
- struct Geo : Codable {
- let lat: String
- let long: String
- }
- */

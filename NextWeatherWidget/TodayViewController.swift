@@ -28,11 +28,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let image : [String]
     }
     
-    struct NetworkInfo {
-        var local : String = "0.0.0.0"
-        var global : String = "0.0.0.0"
-    }
-    
     // main functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,26 +41,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         
-        var networkInfo = NetworkInfo()
-        let succeedNetworkInfo = loadNetworkInfo(info: &networkInfo)
-        if !succeedNetworkInfo {
-            return
-        }
-        
-        sessionInfo(ip: networkInfo.local, timeout: 1, isAllowCellular: false)
-        sessionInfo(ip: networkInfo.global, timeout: 10, isAllowCellular: true)
+        let networkStr = loadNetworkInfo()
+        guard let _networkStr = networkStr else { return }
+        print(_networkStr)
+        sessionInfo(ip: _networkStr, timeout: 10)
         
         completionHandler(NCUpdateResult.newData)
     }
     
-    func sessionInfo(ip: String, timeout: Double, isAllowCellular: Bool) {
+    func sessionInfo(ip: String, timeout: Double) {
         let urlPath = "http://" + ip + ":8080/weather/data/tokyo.json"
-        //NSLog(urlPath)
+        NSLog(urlPath)
         guard let url = URL(string: urlPath) else { return }
         
         let config: URLSessionConfiguration = URLSessionConfiguration.default
         config.timeoutIntervalForResource = timeout
-        config.allowsCellularAccess = isAllowCellular
         let session: URLSession = URLSession(configuration: config)
         session.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -125,18 +115,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     let NetworkFile = "network"
-    func loadNetworkInfo(info : inout NetworkInfo) -> Bool {
+    func loadNetworkInfo() -> String? {
         if let filePath = Bundle.main.path(forResource: NetworkFile, ofType: "txt") {
             do {
                 let str = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
-                let spritedStr = str.components(separatedBy: ",")
-                info.local = spritedStr[0]
-                info.global = spritedStr[1]
-                return true
+                let split = str.components(separatedBy: ",")
+                return split[0]
             } catch {
-                return false
+                return nil
             }
         }
-        return false
+        return nil
     }
 }

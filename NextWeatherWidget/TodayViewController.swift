@@ -28,6 +28,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let image : [String]
     }
     
+    struct NetworkInfo {
+        var local : String = "0.0.0.0"
+        var global : String = "0.0.0.0"
+    }
+    
     // main functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,30 +46,26 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         
-        let succeededLocal = sessionInfo(ip: "192.168.1.14", timeOut: 0.3)
-        if (succeededLocal) {
-            completionHandler(NCUpdateResult.newData)
+        var networkInfo = NetworkInfo()
+        let succeedNetworkInfo = loadNetworkInfo(info: &networkInfo)
+        if !succeedNetworkInfo {
             return
         }
         
-        let succeededGlobal = sessionInfo(ip: "0.0.0.0", timeOut: 10)
-        if (succeededGlobal) {
-            completionHandler(NCUpdateResult.newData)
-            return
-        }
+        sessionInfo(ip: networkInfo.local, timeout: 1, isAllowCellular: false)
+        sessionInfo(ip: networkInfo.global, timeout: 10, isAllowCellular: true)
         
-        completionHandler(NCUpdateResult.failed)
-        
+        completionHandler(NCUpdateResult.newData)
     }
     
-    func sessionInfo(ip: String, timeOut: Double) -> Bool {
+    func sessionInfo(ip: String, timeout: Double, isAllowCellular: Bool) {
         let urlPath = "http://" + ip + ":8080/weather/data/tokyo.json"
-        guard let url = URL(string: urlPath) else { return false }
-        
-        var succeeded = false
+        //NSLog(urlPath)
+        guard let url = URL(string: urlPath) else { return }
         
         let config: URLSessionConfiguration = URLSessionConfiguration.default
-        config.timeoutIntervalForResource = timeOut
+        config.timeoutIntervalForResource = timeout
+        config.allowsCellularAccess = isAllowCellular
         let session: URLSession = URLSession(configuration: config)
         session.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -78,18 +79,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             do {
                 let info = try JSONDecoder().decode(Info.self, from: extractedData)
                 self.updateView(info: info)
-                succeeded = true
             } catch {
                 print(error)
             }
         }.resume()
-        
-        return succeeded
     }
     
     func updateView(info: Info) {
-        print(info.city)
-        
         let todayImage = sessionIconImage(path: info.image[0])
         let todayTempHigh = convertTemperatureToString(tempNum: info.maxTemp[0])
         let todayTempLow = convertTemperatureToString(tempNum: info.minTemp[0])
@@ -126,5 +122,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
         
         return tempNum.description
+    }
+    
+    let NetworkFile = "network"
+    func loadNetworkInfo(info : inout NetworkInfo) -> Bool {
+        if let filePath = Bundle.main.path(forResource: NetworkFile, ofType: "txt") {
+            do {
+                let str = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
+                let spritedStr = str.components(separatedBy: ",")
+                info.local = spritedStr[0]
+                info.global = spritedStr[1]
+                return true
+            } catch {
+                return false
+            }
+        }
+        return false
     }
 }

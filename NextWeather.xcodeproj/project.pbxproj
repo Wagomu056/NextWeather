@@ -17,6 +17,7 @@
 		B0B4412621CDD3A600DBC1D6 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4412521CDD3A600DBC1D6 /* TodayViewController.swift */; };
 		B0B4412921CDD3A600DBC1D6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B4412721CDD3A600DBC1D6 /* MainInterface.storyboard */; };
 		B0B4412D21CDD3A600DBC1D6 /* NextWeatherWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B0B4412021CDD3A600DBC1D6 /* NextWeatherWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B0FFDDC922753B5800785BC5 /* network.txt in Resources */ = {isa = PBXBuildFile; fileRef = B0FFDDC822753B5800785BC5 /* network.txt */; };
 		C5FCF344350AE5C852DBA192 /* Pods_NextWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CAE3FA6CC436F9B2E837C5F /* Pods_NextWeather.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		B0B4412521CDD3A600DBC1D6 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		B0B4412821CDD3A600DBC1D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B0B4412A21CDD3A600DBC1D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0FFDDC822753B5800785BC5 /* network.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = network.txt; sourceTree = "<group>"; };
 		CF1C5419E01740603DBD6AE0 /* Pods-NextWeatherWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextWeatherWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextWeatherWidget/Pods-NextWeatherWidget.release.xcconfig"; sourceTree = "<group>"; };
 		D21965F8E90A212F7CF48EEB /* Pods-NextWeatherWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextWeatherWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextWeatherWidget/Pods-NextWeatherWidget.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				B0B4412521CDD3A600DBC1D6 /* TodayViewController.swift */,
+				B0FFDDC822753B5800785BC5 /* network.txt */,
 				B0B4412A21CDD3A600DBC1D6 /* Info.plist */,
 				B0B4412721CDD3A600DBC1D6 /* MainInterface.storyboard */,
 			);
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B4412921CDD3A600DBC1D6 /* MainInterface.storyboard in Resources */,
+				B0FFDDC922753B5800785BC5 /* network.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

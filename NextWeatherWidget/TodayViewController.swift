@@ -43,7 +43,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         let networkStr = loadNetworkInfo()
         guard let _networkStr = networkStr else { return }
-        print(_networkStr)
         sessionInfo(ip: _networkStr, timeout: 10)
         
         completionHandler(NCUpdateResult.newData)
@@ -51,10 +50,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func sessionInfo(ip: String, timeout: Double) {
         let urlPath = "http://" + ip + "/weather/data/tokyo.json"
-        NSLog(urlPath)
         guard let url = URL(string: urlPath) else { return }
+        print(url)
         
-        let config: URLSessionConfiguration = URLSessionConfiguration.default
+        let config: URLSessionConfiguration = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForResource = timeout
         let session: URLSession = URLSession(configuration: config)
         session.dataTask(with: url) { (data, response, error) in
@@ -62,8 +61,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 print(error!.localizedDescription)
             }
             
-            guard let data = data else { return }
-            guard let jsonString = String(data: data, encoding: .utf8) else { return }
+            guard let data = data else { print("data is empty"); return }
+            guard let jsonString = String(data: data, encoding: .utf8) else { print("faild to string"); return }
             guard let extractedData = jsonString.data(using: .utf8) else { return }
             
             do {

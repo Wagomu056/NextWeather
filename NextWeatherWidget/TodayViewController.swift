@@ -50,7 +50,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func sessionInfo(ip: String, timeout: Double) {
-        let urlPath = "http://" + ip + ":8080/weather/data/tokyo.json"
+        let urlPath = "http://" + ip + "/weather/data/tokyo.json"
         NSLog(urlPath)
         guard let url = URL(string: urlPath) else { return }
         

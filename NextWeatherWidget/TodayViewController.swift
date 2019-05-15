@@ -22,10 +22,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     // struct for json
     struct Info : Codable {
-        let city : String
-        let maxTemp : [Int]
-        let minTemp : [Int]
+        let date : [Int]
+        let max_temp : [Int]
+        let min_temp : [Int]
         let image : [String]
+        let image_root : String
     }
     
     // main functions
@@ -75,9 +76,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func updateView(info: Info) {
-        let todayImage = sessionIconImage(path: info.image[0])
-        let todayTempHigh = convertTemperatureToString(tempNum: info.maxTemp[0])
-        let todayTempLow = convertTemperatureToString(tempNum: info.minTemp[0])
+        let todayImage = sessionIconImage(path: info.image_root + info.image[0])
+        let todayTempHigh = convertTemperatureToString(tempNum: info.max_temp[0])
+        let todayTempLow = convertTemperatureToString(tempNum: info.min_temp[0])
         
         DispatchQueue.main.async {
             self.todayIcon.image = todayImage
@@ -85,9 +86,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.todayTempLow.text = todayTempLow + "℃"
         }
         
-        let tomorrowImage = sessionIconImage(path: info.image[1])
-        let tomorrowTempHigh = convertTemperatureToString(tempNum: info.maxTemp[1])
-        let tomorrowTempLow = convertTemperatureToString(tempNum: info.minTemp[1])
+        let tomorrowImage = sessionIconImage(path: info.image_root + info.image[1])
+        let tomorrowTempHigh = convertTemperatureToString(tempNum: info.max_temp[1])
+        let tomorrowTempLow = convertTemperatureToString(tempNum: info.min_temp[1])
         
         DispatchQueue.main.async {
             self.tomorrowIcon.image = tomorrowImage

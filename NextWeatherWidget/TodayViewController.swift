@@ -83,7 +83,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         DispatchQueue.main.async {
             self.todayIcon.image = todayImage
             self.todayTempHigh.text = todayTempHigh + "℃"
+            self.todayTempHigh.textColor = .systemRed
             self.todayTempLow.text = todayTempLow + "℃"
+            self.todayTempLow.textColor = .systemBlue
         }
         
         let tomorrowImage = sessionIconImage(path: info.image_root + info.image[1])
@@ -93,7 +95,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         DispatchQueue.main.async {
             self.tomorrowIcon.image = tomorrowImage
             self.tomorrowTempHigh.text = tomorrowTempHigh + "℃"
+            self.tomorrowTempHigh.textColor = .systemRed
             self.tomorrowTempLow.text = tomorrowTempLow + "℃"
+            self.tomorrowTempLow.textColor = .systemBlue
         }
     }
     
